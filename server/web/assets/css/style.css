@@ -1,0 +1,43 @@
+:root{
+  --green:#22c55e;
+  --bg:#0b0f14;
+  --card:#121822;
+  --text:#e6eef8;
+  --muted:#9fb3c8;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";background:var(--bg);color:var(--text)}
+.layout{display:flex;min-height:100vh}
+.sidebar{
+  position:sticky; top:0; align-self:flex-start;
+  width:280px; min-height:100vh; background:var(--green);
+  padding:24px 16px; color:#06240f; display:flex; flex-direction:column; gap:16px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.08) inset;
+}
+.brand{font-size:24px;font-weight:800;letter-spacing:.4px}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:12px 14px; border-radius:14px; border:none; cursor:pointer;
+  font-weight:700; background:#0b0f14; color:#d9ffe8;
+  box-shadow:0 2px 0 rgba(0,0,0,.2); text-decoration:none;
+}
+.btn.secondary{ background:#0f1720; color:#bdf7d4 }
+.content{ flex:1; padding:24px; }
+.header{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px}
+.grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:16px }
+.card{ background:var(--card); border-radius:16px; padding:14px; border:1px solid #1c2330 }
+.card h3{ margin:8px 0 6px }
+.badge{ font-size:12px; background:#1d2635; color:#9bd8b3; padding:4px 8px; border-radius:999px; }
+.video{ width:100%; border-radius:12px; background:#000 }
+.table{ width:100%; border-collapse:collapse; border:1px solid #1c2330; border-radius:12px; overflow:hidden }
+.table th,.table td{ border-bottom:1px solid #1c2330; padding:10px; text-align:left }
+.input, select{
+  width:100%; padding:10px 12px; border-radius:12px; border:1px solid #1c2330;
+  background:#0f1622; color:var(--text)
+}
+.row{ display:flex; gap:12px; align-items:center; flex-wrap:wrap }
+.mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace }
+.small{ color:var(--muted); font-size:12px }
+hr{ border:none; border-top:1px solid #1c2330; margin:16px 0 }
+.footer{ margin-top:auto; font-weight:600 }
+a{ color:inherit }
