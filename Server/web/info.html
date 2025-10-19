@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Informació</title>
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <script src="./assets/js/app.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="content">
+      <div class="header">
+        <h1>📄 Informació</h1>
+      </div>
+
+      <section class="card">
+        <h3>Cercar espècie a l'API</h3>
+        <div class="row">
+          <input id="q" class="input" placeholder="Nom comú (nom_comu)" />
+          <button class="btn" id="btnSearch">Cercar</button>
+        </div>
+        <pre id="res" class="mono small"></pre>
+      </section>
+
+      <section style="margin-top:16px" class="card">
+        <h3>Resum</h3>
+        <div class="row">
+          <button class="btn" id="btnVideos">Carrega vídeos</button>
+          <button class="btn secondary" id="btnCams">Carrega càmeres</button>
+        </div>
+        <div id="summary" class="small" style="margin-top:10px"></div>
+      </section>
+    </main>
+  </div>
+  <script>
+    mountSidebar('info');
+    document.getElementById('btnSearch').onclick = async () => {
+      const name = document.getElementById('q').value.trim();
+      const out = document.getElementById('res');
+      out.textContent = '...';
+      try{
+        const r = await fetch(`${API_BASE}/especies?nombre=${encodeURIComponent(name)}`);
+        out.textContent = JSON.stringify(await r.json(), null, 2);
+      }catch(e){
+        out.textContent = 'Error: '+e.message;
+      }
+    };
+
+    document.getElementById('btnVideos').onclick = async () => {
+      const d = await api('/videos');
+      document.getElementById('summary').textContent = `Vídeos: ${d.length}`;
+    };
+    document.getElementById('btnCams').onclick = async () => {
+      const d = await api('/camaras');
+      document.getElementById('summary').textContent = `Càmeres: ${d.length}`;
+    };
+  </script>
+</body>
+</html>
